@@ -1,0 +1,1 @@
+// Gère les erreurs dans l'application

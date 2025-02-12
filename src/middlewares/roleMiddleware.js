@@ -1,0 +1,1 @@
+// Vérifie les permissions de l'utilisateur
