@@ -1,1 +1,0 @@
-// Validation des données envoyées par la requête

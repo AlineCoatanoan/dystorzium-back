@@ -4,6 +4,7 @@ import db from '../config/dbclient';
 import User from './userModel';
 import Action from './actionModel';
 
+// models/userActionModel.js
 export const User_Action = db.define('User_Action', {
   user_id: {
     type: DataTypes.INTEGER,
@@ -21,10 +22,10 @@ export const User_Action = db.define('User_Action', {
     },
     onDelete: 'CASCADE',
   },
-  date_performed: {
+  date_validation: {
     type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
+    allowNull: true, // Null tant que l'énigme n'est pas validée
+  },  
   status: {
     type: DataTypes.STRING(20),
     allowNull: false,
@@ -32,8 +33,12 @@ export const User_Action = db.define('User_Action', {
       isIn: [['in progress', 'completed', 'abandoned']],
     },
   },
+  response_submitted: {  // Réponse soumise à l'action
+    type: DataTypes.STRING(255),
+  },
 }, {
   timestamps: false,
   primaryKey: false,
 });
+
 

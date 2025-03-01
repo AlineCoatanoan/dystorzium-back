@@ -1,1 +1,0 @@
-// Fonctions pour le hashage et la comparaison des mots de passe

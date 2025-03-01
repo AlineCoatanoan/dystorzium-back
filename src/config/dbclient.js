@@ -12,7 +12,7 @@ export const sequelize = new Sequelize(
     dialect: 'postgres', // Type de base de données
     logging: true, // Active les logs SQL dans la console
     define: {
-      timestamps: false, // Désactive les timestamps automatiques si tu n'en veux pas
+      timestamps: false, // Désactive les timestamps automatiques
     },
   }
 );

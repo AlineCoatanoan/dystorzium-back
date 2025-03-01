@@ -4,6 +4,7 @@ import db from '../config/dbclient';
 import User from './userModel';
 import Riddle from './riddleModel';
 
+// models/actionModel.js
 export const Action = db.define('Action', {
   id: {
     type: DataTypes.INTEGER,
@@ -40,5 +41,16 @@ export const Action = db.define('Action', {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
+  response_submitted: {
+    type: DataTypes.INTEGER,  // Si la réponse est un nombre
+  },
+  clue_id: {  // Référence à un indice pour l'action
+    type: DataTypes.INTEGER,
+    references: {
+      model: Clue,
+      key: 'id',
+    },
+  },
 });
+
 
