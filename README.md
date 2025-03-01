@@ -1,14 +1,11 @@
 # Dystorzium
 
-🚀 **Dystorzium** est un projet web dystopique conçu avec une architecture propre et modulaire. Il est basé sur un stack moderne incluant **React (Vite), TypeScript, Tailwind CSS, DaisyUI, Express, Sequelize et PostgreSQL**.
+🚀 **Dystorzium** est un jeu web immersif conçu avec une architecture propre et modulaire. Il est basé sur un stack moderne incluant **React (Vite), TypeScript, Tailwind CSS, DaisyUI, Framer Motion, GASP, Express, Sequelize et PostgreSQL**.
 
 ## 📌 Table des matières
 
-- [Pré-requis](#-pré-requis)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
+- [Fonctionnalités principales](#-fonctionnalités-principales)
 - [Structure du projet](#-structure-du-projet)
-- [Utilisation](#-utilisation)
 - [Tests](#-tests)
 - [Déploiement sur Vercel](#-déploiement-sur-vercel)
 - [Contribution](#-contribution)
@@ -16,42 +13,12 @@
 
 ---
 
-## ✅ Pré-requis
+## 🚀 Fonctionnalités principales
 
-Assurez-vous d'avoir installé les éléments suivants :
-- [Node.js](https://nodejs.org/) (v16+ recommandé)
-- [pnpm](https://pnpm.io/) (gestionnaire de paquets)
-- [PostgreSQL](https://www.postgresql.org/)
-
----
-
-## 🔧 Installation
-
-Clonez le projet :
-```sh
-git clone https://github.com/ton-utilisateur/dystorzium.git
-cd dystorzium
-```
-
-Installez les dépendances :
-```sh
-pnpm install
-```
-
----
-
-## ⚙️ Configuration
-
-1. Copiez le fichier `.env.example` et renommez-le en `.env`
-2. Remplissez les variables d'environnement, notamment la connexion à PostgreSQL :
-   ```sh
-   DATABASE_URL=postgres://user:password@localhost:5432/dystorzium
-   ```
-
-3. Initialisez la base de données :
-   ```sh
-   pnpm run db:reset
-   ```
+1. Frontend : Construit avec React, Vite, Tailwind CSS, DaisyUI, Framer Motion, et GASP pour une interface fluide et interactive.
+2. Backend : Développé avec Express et Sequelize, utilisant PostgreSQL comme base de données relationnelle.
+3. Architecture modulaire : La séparation claire des préoccupations pour faciliter la maintenance et l'extensibilité.
+4. Responsivité : Conçu pour être responsive et accessible sur tous les appareils.
 
 ---
 
@@ -61,9 +28,12 @@ pnpm install
 📦 dystorzium
 ├── 📂 backend
 │   ├── src/
+    │   ├── config/
 │   │   ├── controllers/
+    │   ├── middlewares/
 │   │   ├── models/
 │   │   ├── routes/
+    │   ├── seeds/
 │   │   ├── utils/
 │   ├── index.js
 ├── 📂 frontend
@@ -71,25 +41,11 @@ pnpm install
 │   │   ├── components/
 │   │   ├── pages/
 │   │   ├── hooks/
+│   ├── public/
 │   ├── main.tsx
 ├── .env.example
 ├── package.json
 └── README.md
-```
-
----
-
-## 🚀 Utilisation
-
-Lancez le backend :
-```sh
-pnpm run dev:server
-```
-
-Lancez le frontend :
-```sh
-pnpm run dev:client
-```
 
 ---
 
@@ -122,16 +78,11 @@ pnpm test
 
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues !
-1. Forkez le projet
-2. Créez une branche (`git checkout -b feature-ma-feature`)
-3. Commitez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
-4. Poussez la branche (`git push origin feature-ma-feature`)
-5. Ouvrez une **Pull Request** 🎉
+Ce projet est présenté uniquement à des fins professionnelles pour mettre en valeur mes compétences en développement. Les contributions externes ne sont pas acceptées et toute modification ou distribution du code est interdite sans autorisation explicite.
 
 ---
 
 ## 📜 Licence
 
-Ce projet est sous licence **MIT**. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+Ce projet est privé et destiné uniquement à la démonstration. Toute utilisation, modification ou redistribution sans autorisation préalable est interdite. Merci de respecter ces conditions.
 
