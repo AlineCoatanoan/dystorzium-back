@@ -1,8 +1,6 @@
-// models/riddleModel.js
 import { DataTypes } from 'sequelize';
 import db from '../config/dbclient';
 
-// models/riddleModel.js
 export const Riddle = db.define('Riddle', {
   id: {
     type: DataTypes.INTEGER,
@@ -11,27 +9,41 @@ export const Riddle = db.define('Riddle', {
   },
   title: {
     type: DataTypes.STRING(255),
+    allowNull: false,
   },
   description: {
     type: DataTypes.TEXT,
-  },
-  solution: {
-    type: DataTypes.INTEGER,  // Changer en INTEGER si tu attends des résultats numériques
-    set(value) {
-      if (typeof value === 'string') {
-        this.setDataValue('solution', parseInt(value.trim())); // Convertir en nombre si c'est une chaîne
-      } else {
-        this.setDataValue('solution', value);
-      }
-    },
+    allowNull: false,
   },
   content: {
-    type: DataTypes.TEXT,
+    type: DataTypes.TEXT, // Contenu de l'énigme (texte, lien, etc.)
+    allowNull: true,
   },
-  is_multi_step: {  // Indique si l'énigme a plusieurs étapes
+  solution: {
+    type: DataTypes.STRING, // Acceptation de réponses textuelles
+    allowNull: false,
+  },
+   type: {
+    type: DataTypes.ENUM('text', 'audio', 'image', 'interactive'),
+    allowNull: false,
+    defaultValue: 'text', // Par défaut, une énigme textuelle
+  },
+  order: {
+    type: DataTypes.INTEGER, // Pour organiser les énigmes dans un ordre précis
+    allowNull: false,
+  },
+  is_multi_step: {
     type: DataTypes.BOOLEAN,
-    defaultValue: false,
+    defaultValue: false, // Pour indiquer si l'énigme se fait en plusieurs étapes
+  },
+  next_riddle_id: {
+    type: DataTypes.INTEGER,
+    allowNull: true, // Permet de lier à l’énigme suivante
+    references: {
+      model: 'Riddles',
+      key: 'id',
+    },
   },
 });
 
-
+export default Riddle;

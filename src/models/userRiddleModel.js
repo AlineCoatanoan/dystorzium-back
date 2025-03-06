@@ -35,6 +35,9 @@ export const User_Riddle = db.define('User_Riddle', {
   date_completed: {
     type: DataTypes.DATE,
   },
+  response_submitted: {  // Réponse soumise par le joueur
+    type: DataTypes.STRING(255),
+  },
 }, {
   timestamps: false,
   primaryKey: false,

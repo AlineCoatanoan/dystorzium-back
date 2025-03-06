@@ -5,6 +5,7 @@
 ## 📌 Table des matières
 
 - [Fonctionnalités principales](#-fonctionnalités-principales)
+- [Optimisation Mobile](#-optimisation-mobile)
 - [Structure du projet](#-structure-du-projet)
 - [Tests](#-tests)
 - [Déploiement sur Vercel](#-déploiement-sur-vercel)
@@ -19,6 +20,19 @@
 2. Backend : Développé avec Express et Sequelize, utilisant PostgreSQL comme base de données relationnelle.
 3. Architecture modulaire : La séparation claire des préoccupations pour faciliter la maintenance et l'extensibilité.
 4. Responsivité : Conçu pour être responsive et accessible sur tous les appareils.
+
+---
+
+## 📱 Optimisation Mobile
+
+Le projet **Dystorzium** est principalement conçu pour offrir une expérience immersive sur **desktop**. En raison de la nature interactive et de l'ambiance immersive du jeu. 
+
+**Pourquoi ne pas optimiser pour mobile ?**
+- **Immersion** : Le jeu a été conçu pour offrir une expérience immersive, et cela est plus crédible sur un écran de taille normale ou grande. De plus, l'utilisateur devant régulièrement se rendre sur des sites externes pour accéder à des informations ou des ressources, ce qui peut être difficile à gérer sur un écran plus petit.
+- **Limites techniques** : Certaines animations et interactions (notamment avec **Framer Motion** et **GASP**) peuvent ne pas être aussi performantes ou adaptées sur des appareils mobiles.
+- **Conception des interfaces** : L'interface utilisateur a été pensée pour des écrans plus larges, avec des éléments complexes qui pourraient être difficiles à naviguer sur un mobile.
+
+Bien que l'expérience sur mobile ne soit pas idéale, il est possible de visiter le projet sur un appareil mobile, mais l'expérience pourrait ne pas refléter l'intention immersive du jeu.
 
 ---
 
