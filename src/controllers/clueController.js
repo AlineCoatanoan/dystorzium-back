@@ -1,4 +1,4 @@
-import { Clue } from '../models/clueModel'; // Modèle Clue
+import { Clue } from '../models/clueModel.js'; // Modèle Clue
 
 // Créer un nouvel indice
 export const createClue = async (req, res) => {

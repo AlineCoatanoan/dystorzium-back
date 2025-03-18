@@ -1,6 +1,6 @@
-import { Riddle } from '../models/riddleModel'; // Modèle de l'énigme
-import { Action } from '../models/actionModel'; // Modèle de l'action
-import { validateResponse } from '../validators/validationResponse'; // Validation Joi
+import { Riddle } from '../models/riddleModel.js'; // Modèle de l'énigme
+import { Action } from '../models/actionModel.js'; // Modèle de l'action
+import { validateResponse } from '../middlewares/validateResponseMiddleware.js'; // Validation Joi
 
 // Créer une énigme
 export const createRiddle = async (req, res) => {

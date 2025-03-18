@@ -1,18 +1,15 @@
-import { Sequelize } from 'sequelize';
-import dotenv from 'dotenv';
+import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
 
 dotenv.config();
 
 export const sequelize = new Sequelize(
-  process.env.DB_NAME, // Nom de la base de données
-  process.env.DB_USER, // Nom d'utilisateur
-  process.env.DB_PASSWORD, // Mot de passe
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
   {
-    host: process.env.DB_HOST || 'localhost', // Hôte de la base de données (localhost par défaut)
-    dialect: 'postgres', // Type de base de données
-    logging: true, // Active les logs SQL dans la console
-    define: {
-      timestamps: false, // Désactive les timestamps automatiques
-    },
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: process.env.DB_DIALECT,
   }
 );

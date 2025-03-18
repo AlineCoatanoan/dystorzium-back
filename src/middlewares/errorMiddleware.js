@@ -1,4 +1,4 @@
-const errorMiddleware = (err, req, res, next) => {
+export const errorMiddleware = (err, req, res, next) => {
     console.error(err); // Log de l'erreur
   
     const statusCode = err.status || 500; // Par défaut, erreur serveur (500)
@@ -11,5 +11,4 @@ const errorMiddleware = (err, req, res, next) => {
     });
   };
   
-  export default errorMiddleware;
   

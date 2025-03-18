@@ -1,7 +1,7 @@
 import { Op } from 'sequelize';
-import { User_Action } from '../models/userActionModel';
-import { User } from '../models/userModel';
-import { Action } from '../models/actionModel';
+import { User_Action } from '../models/userActionModel.js';
+import { User } from '../models/userModel.js';
+import { Action } from '../models/actionModel.js';
 
 // Créer une action utilisateur
 export const createUserAction = async (req, res) => {

@@ -1,7 +1,7 @@
-import { User } from '../models';
+import { User } from '../models/userModel.js';
 import bcrypt from 'bcrypt';
-import { generateToken } from '../utils/token';
-import { validateRegister } from '../utils/validate'; // Assure-toi d'importer la fonction de validation depuis ton fichier `validate.js`
+import { generateToken } from '../utils/generateToken.js';
+import { validateRegister } from '../middlewares/validate.js'; 
 
 // 🔹 Récupérer tous les utilisateurs
 export const getUsers = async (req, res) => {

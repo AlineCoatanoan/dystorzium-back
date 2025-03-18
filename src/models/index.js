@@ -1,11 +1,13 @@
-// models/index.js
-import User from './userModel';
-import Action from './actionModel';
-import User_Action from './userActionModel';
-import Riddle from './riddleModel';
-import Clue from './clueModel';
-import User_Clue from './userClueModel';
-import User_Riddle from './userRiddleModel';
+// src/models/index.js
+
+import { sequelize } from '../config/dbclient.js'; // Importer la connexion à la BDD
+import { User } from './userModel.js';
+import { Action } from './actionModel.js';
+import { User_Action } from './userActionModel.js';
+import { Riddle } from './riddleModel.js';
+import { Clue } from './clueModel.js';
+import { User_Clue } from './userClueModel.js';
+import { User_Riddle } from './userRiddleModel.js';
 
 // Associer les modèles entre eux
 User.hasMany(Action, { foreignKey: 'user_id' });
@@ -32,4 +34,19 @@ Clue.hasMany(User_Clue, { foreignKey: 'clue_id' });
 User_Clue.belongsTo(User, { foreignKey: 'user_id' });
 User_Clue.belongsTo(Clue, { foreignKey: 'clue_id' });
 
-export { User, Action, User_Action, Riddle, Clue, User_Clue, User_Riddle };
+// 🔄 Synchroniser la base de données
+const syncDatabase = async () => {
+  try {
+    await sequelize.sync({ alter: true }); // Utilise { alter: true } pour éviter de perdre des données
+    console.log('✅ Base de données synchronisée avec succès !');
+  } catch (error) {
+    console.error('❌ Erreur lors de la synchronisation de la base de données :', error);
+  }
+};
+
+syncDatabase();
+
+// Exporter les modèles sous un objet 'models'
+export const models = { User, Action, User_Action, Riddle, Clue, User_Clue, User_Riddle };
+
+

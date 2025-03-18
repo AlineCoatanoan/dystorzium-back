@@ -1,6 +1,6 @@
-import { User_Clue } from '../models/userClueModel';
-import { User } from '../models/userModel';
-import { Clue } from '../models/clueModel';
+import { User_Clue } from '../models/userClueModel.js';
+import { User } from '../models/userModel.js';
+import { Clue } from '../models/clueModel.js';
 
 // Créer une demande d'indice pour un utilisateur
 export const createUserClue = async (req, res) => {

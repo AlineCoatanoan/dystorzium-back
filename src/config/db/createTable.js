@@ -1,4 +1,4 @@
-import { sequelize } from "../dbclient";
+import { sequelize } from "../dbclient.js";
 
 (async () => {
   try {

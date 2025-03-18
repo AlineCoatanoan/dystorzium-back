@@ -1,9 +1,11 @@
 import bcrypt from "bcrypt";
-import { models } from "../../models/index.js";
+import { sequelize } from '../config/dbclient.js'
+import { models } from "../models/index.js";
 
 const { User } = models;
 
-export const seedUser = async () => {
+export const userSeed = async () => {
+  await sequelize.sync();
   // Utilisateurs avec tous les champs requis
   const users = [
     {

@@ -1,9 +1,9 @@
-export const ctrlWrapper = (ctrl) => {
-    return async (req, res, next) => {
-      try {
-        await ctrl(req, res, next);
-      } catch (error) {
-        next(error); // Passer l'erreur au middleware de gestion des erreurs
-      }
-    };
+export const ctrlWrapper = (controller) => {
+  return async (req, res, next) => {
+    try {
+      await controller(req, res);
+    } catch (error) {
+      next(error); // Utiliser next() pour faire passer l'erreur à Express
+    }
   };
+};

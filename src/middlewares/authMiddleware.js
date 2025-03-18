@@ -1,15 +1,15 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { models } from "../models/index.js";  // ou ton chemin vers les modèles
-import { loginSchema } from "../validators/loginValidator.js"; // Si tu utilises Joi
+import { models } from "../models/index.js";  
+import { validateLogin } from "../middlewares/validate.js";
 
 const { User } = models;
 
 // Contrôleur pour la connexion
-export const loginUser = async (req, res) => {
+export const authMiddleware = async (req, res) => {
   try {
     // Validation avec Joi
-    const { error } = loginSchema.validate(req.body);
+    const { error } = validateLogin.validate(req.body);
     if (error) return res.status(400).json({ message: error.details[0].message });
 
     const { email, password } = req.body;

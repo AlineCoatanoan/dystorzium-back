@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
-import { User } from '../models'; // Assure-toi d'importer ton modèle User
-import { validateLogin } from '../middlewares/validate'; // Import du schéma de validation
-import { ctrlWrapper } from '../utils/ctrlWrapper'; // Si tu utilises un wrapper pour gérer les erreurs
-import { generateToken } from '../../utils/generateToken'; // Import de la fonction generateToken
+import { User } from '../models/userModel.js'; // Assure-toi d'importer ton modèle User
+import { validateLogin } from '../middlewares/validate.js'; // Import du schéma de validation
+import { ctrlWrapper } from '../utils/ctrlWrapper.js'; // Si tu utilises un wrapper pour gérer les erreurs
+import { generateToken } from '../utils/generateToken.js'; // Import de la fonction generateToken
 
 // Contrôleur pour la connexion
 export const loginUser = ctrlWrapper(async (req, res) => {
@@ -35,4 +35,17 @@ export const loginUser = ctrlWrapper(async (req, res) => {
   const token = generateToken(user);
 
   res.status(200).json({ message: "Connexion réussie", token });
+});
+
+// authController.js
+export const logoutUser = ctrlWrapper(async (req, res) => {
+  try {
+    // Si tu utilises des cookies, supprimez le cookie contenant le token JWT
+    res.clearCookie('token');  // Exemple si tu stockes le token dans un cookie
+
+    // Ou tu peux également envoyer un message de confirmation de la déconnexion
+    res.status(200).json({ message: "Déconnexion réussie" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });

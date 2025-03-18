@@ -1,5 +1,5 @@
 import Joi from "joi";
-import errorMiddleware from "./errorMiddleware";
+import { errorMiddleware } from "./errorMiddleware.js";
 
 export const validateLogin = (req, res, next) => {
   const schema = Joi.object({

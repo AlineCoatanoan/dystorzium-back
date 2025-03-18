@@ -1,5 +1,5 @@
-import { Action } from '../models/actionModel'; // Modèle Action
-import { Riddle } from '../models/riddleModel'; // Modèle Riddle
+import { Action } from '../models/actionModel.js'; // Modèle Action
+import { Riddle } from '../models/riddleModel.js'; // Modèle Riddle
 
 // Créer une action pour une énigme
 export const createAction = async (req, res) => {

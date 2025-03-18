@@ -1,8 +1,8 @@
-import db from '../config/dbclient.js';
+import { sequelize } from '../config/dbclient.js'
 import { Riddle } from '../models/riddleModel.js';
 
-const riddleSeeds = async () => {
-  await db.sync({ force: true }); // Réinitialise la base de données (⚠️ Supprime toutes les données existantes)
+export const riddleSeed = async () => {
+  await sequelize.sync(); // Réinitialise la base de données (⚠️ Supprime toutes les données existantes)
 
   const riddles = [
     {
@@ -12,8 +12,8 @@ const riddleSeeds = async () => {
       solution: 'SINGULARITY',
       type: 'text',
       order: 1,
-      is_multi_step: false,
-      next_riddle_id: 2, 
+      isMultiStep: false,
+      nextRiddleId: 2, 
     },
     {
       title: 'Anomalie détectée',
@@ -22,8 +22,8 @@ const riddleSeeds = async () => {
       solution: ['DISTORSION', 'PASSAGE'],
       type: 'interactive',
       order: 2,
-      is_multi_step: true,
-      next_riddle_id: 3,
+      isMultiStep: true,
+      nextRiddleId: 3,
     },
     {
       title: 'Le lien invisible',
@@ -33,8 +33,8 @@ const riddleSeeds = async () => {
       solution: 'VECTOR',
       type: 'text',
       order: 3,
-      is_multi_step: false,
-      next_riddle_id: 4,
+      isMultiStep: false,
+      nextRiddleId: 4,
     },
     {
       title: 'Rapport crypté',
@@ -44,8 +44,8 @@ const riddleSeeds = async () => {
       solution: 'ONDE',
       type: 'interactive',
       order: 4,
-      is_multi_step: true,
-      next_riddle_id: 5,
+      isMultiStep: true,
+      nextRiddleId: 5,
     },
     {
       title: 'Le fichier perdu',
@@ -55,8 +55,8 @@ const riddleSeeds = async () => {
       solution: 'https://www.persee.fr/doc/phlou_0035-3841_1950_num_48_18_4284',
       type: 'text',
       order: 5,
-      is_multi_step: false,
-      next_riddle_id: 6,
+      isMultiStep: false,
+      nextRiddleId: 6,
     },
     {
       title: 'L\'ombre et la lumière',
@@ -67,8 +67,8 @@ const riddleSeeds = async () => {
         'Une des hypothèses majeures envisage que le Dystorzium pourrait constituer une passerelle vers une forme d’intelligence artificielle d’un type radicalement nouveau.',
       type: 'interactive',
       order: 6,
-      is_multi_step: true,
-      next_riddle_id: 7,
+      isMultiStep: true,
+      nextRiddleId: 7,
     },
     {
       title: 'Le fichier crypté',
@@ -78,8 +78,8 @@ const riddleSeeds = async () => {
       solution: 'Framatorrent',
       type: 'text',
       order: 7,
-      is_multi_step: false,
-      next_riddle_id: 8,
+      isMultiStep: false,
+      nextRiddleId: 8,
     },
     {
       title: 'Déchiffrez le PDF',
@@ -89,8 +89,8 @@ const riddleSeeds = async () => {
       solution: 'ANOMALIE',
       type: 'interactive',
       order: 8,
-      is_multi_step: false,
-      next_riddle_id: 9,
+      isMultiStep: false,
+      nextRiddleId: 9,
     },
     {
       title: 'Coordonnées secrètes',
@@ -100,8 +100,8 @@ const riddleSeeds = async () => {
       solution: 'Ada Lovelace',
       type: 'text',
       order: 9,
-      is_multi_step: false,
-      next_riddle_id: 10,
+      isMultiStep: false,
+      nextRiddleId: 10,
     },
     {
       title: 'Le dernier indice',
@@ -111,13 +111,13 @@ const riddleSeeds = async () => {
       solution: 'Fin du jeu',
       type: 'interactive',
       order: 10,
-      is_multi_step: false,
-      next_riddle_id: null, // Dernière énigme
+      isMultiStep: false,
+      nextRiddleId: null, // Dernière énigme
     },
   ];
 
-  await Riddle.bulkCreate(riddles);
+  await Riddle.create(riddles);
   console.log('🌟 Toutes les énigmes ont été ajoutées à la base de données !');
 };
 
-riddleSeeds();
+riddleSeed();

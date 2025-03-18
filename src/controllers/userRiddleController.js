@@ -1,6 +1,6 @@
-import { User_Riddle } from '../models/userRiddleModel';
-import { User } from '../models/userModel';
-import { Riddle } from '../models/riddleModel';
+import { User_Riddle } from '../models/userRiddleModel.js';
+import { User } from '../models/userModel.js';
+import { Riddle } from '../models/riddleModel.js';
 
 
 // Créer une participation à une énigme
@@ -68,8 +68,6 @@ export const validateRiddleAnswer = async (req, res) => {
     res.status(500).json({ message: 'Erreur lors de la validation de la réponse à l\'énigme.' });
   }
 };
-
-
 
 // Récupérer une participation à une énigme par ID
 export const getUserRiddleById = async (req, res) => {
