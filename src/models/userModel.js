@@ -28,9 +28,6 @@ export class User extends Model {
           type: DataTypes.STRING(255),
           allowNull: false,
         },
-        secretCode: {
-          type: DataTypes.STRING(50),
-        },
         registrationDate: {
           type: DataTypes.DATE,
           defaultValue: DataTypes.NOW,

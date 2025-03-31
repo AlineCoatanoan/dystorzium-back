@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { models } from "../models/index.js";  
-import { validateLogin } from "../middlewares/validate.js";
+import { validateLogin } from "./validateLogin.js";
 
 const { User } = models;
 

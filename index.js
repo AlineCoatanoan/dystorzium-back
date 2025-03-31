@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 });
 
 // Router
-app.use("/api", router);
+app.use("/", router);
 
 // Middleware pour gérer les routes non trouvées (404)
 app.use(notFoundMiddleware);

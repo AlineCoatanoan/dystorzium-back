@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { User } from '../models/userModel.js'; // Assure-toi d'importer ton modèle User
-import { validateLogin } from '../middlewares/validate.js'; // Import du schéma de validation
+import { validateLogin } from '../middlewares/validateLogin.js'; // Import du schéma de validation
 import { ctrlWrapper } from '../utils/ctrlWrapper.js'; // Si tu utilises un wrapper pour gérer les erreurs
 import { generateToken } from '../utils/generateToken.js'; // Import de la fonction generateToken
 

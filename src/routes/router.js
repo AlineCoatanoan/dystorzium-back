@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { clueRouter } from './clueRoutes.js';
-import { riddleRouter } from './riddleRoutes.js';
-import { userRouter } from './userRoutes.js';
-import { actionRouter } from './actionRoutes.js';
-import { authRouter } from './authRoutes.js';
+import { clueRouter } from './clueRouter.js';
+import { riddleRouter } from './riddleRouter.js';
+import { userRouter } from './userRouter.js';
+import { actionRouter } from './actionRouter.js';
+import { authRouter } from './authRouter.js';
 
 export const router = Router();
 

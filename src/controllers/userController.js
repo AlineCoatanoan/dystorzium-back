@@ -1,7 +1,7 @@
 import { User } from '../models/userModel.js';
 import bcrypt from 'bcrypt';
 import { generateToken } from '../utils/generateToken.js';
-import { validateRegister } from '../middlewares/validate.js'; 
+import { validateRegister } from '../middlewares/validateRegister.js'; 
 
 // 🔹 Récupérer tous les utilisateurs
 export const getUsers = async (req, res) => {
@@ -28,15 +28,9 @@ export const getUser = async (req, res) => {
 
 // 🔹 Créer un utilisateur (avec rôle)
 export const createUser = async (req, res) => {
-  try {
     // Validation des données avec Joi (via le fichier `validate.js`)
     const { error } = validateRegister(req.body);
     if (error) return res.status(400).json({ message: error.details[0].message });
-
-    // Vérifier que l'utilisateur est un admin pour créer un admin
-    if (req.user.role !== 'admin' && req.body.role === 'admin') {
-      return res.status(403).json({ message: "Seul un administrateur peut créer un autre administrateur" });
-    }
 
     // Vérification de l'existence de l'utilisateur avec cet email
     const existingUser = await User.findOne({ where: { email: req.body.email } });
@@ -63,9 +57,7 @@ export const createUser = async (req, res) => {
       user: userData,
       token, // Envoi du token
     });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+  
 };
 
 // 🔹 Mettre à jour un utilisateur

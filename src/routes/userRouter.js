@@ -2,6 +2,7 @@ import { Router } from 'express';
 import * as UserController from '../controllers/userController.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { authMiddleware } from '../middlewares/authMiddleware.js';  // Si tu as des middlewares pour la vérification d'auth
+import { validateRegister } from '../middlewares/validateRegister.js';
 
 export const userRouter = Router();
 
@@ -12,7 +13,7 @@ userRouter.get('/', authMiddleware, ctrlWrapper(UserController.getUsers));
 userRouter.get('/:id', authMiddleware, ctrlWrapper(UserController.getUser));
 
 // Route pour créer un nouvel utilisateur
-userRouter.post('/register', authMiddleware, ctrlWrapper(UserController.createUser));
+userRouter.post('/register', validateRegister, ctrlWrapper(UserController.createUser));
 
 // Route pour mettre à jour un utilisateur
 userRouter.put('/:id', authMiddleware, ctrlWrapper(UserController.updateUser));
