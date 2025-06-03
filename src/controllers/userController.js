@@ -9,7 +9,7 @@ import { successResponse } from '../utils/successUtils.js';
 // 🔹 Récupérer tous les utilisateurs
 export const getUsers = async (req, res) => {
   try {
-    const users = await User.findAll({ attributes: { exclude: ['password'] } }); // Exclure les mots de passe
+    const users = await User.findAll({ attributes: { exclude: ['password'] } });
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });

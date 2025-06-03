@@ -7,7 +7,7 @@ import { validateRegister } from '../middlewares/validateRegister.js';
 export const userRouter = Router();
 
 // Route pour récupérer tous les utilisateurs
-userRouter.get('/', authMiddleware, ctrlWrapper(UserController.getUsers));
+userRouter.get('/', ctrlWrapper(UserController.getUsers));
 
 // Route pour récupérer un utilisateur par ID
 userRouter.get('/:id', authMiddleware, ctrlWrapper(UserController.getUser));
