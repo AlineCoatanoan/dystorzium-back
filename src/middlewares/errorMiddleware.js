@@ -11,4 +11,10 @@ export const errorMiddleware = (err, req, res, next) => {
     });
   };
   
-  
+  // error 400 : mauvaise requête
+export const badRequestResponse = (res, message = "Bad request") => {
+  return res.status(400).json({
+    success: false,
+    message: message || "Bad request",
+  });
+};

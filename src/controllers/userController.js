@@ -1,7 +1,10 @@
 import { User } from '../models/userModel.js';
 import bcrypt from 'bcrypt';
+import { ctrlWrapper } from '../utils/ctrlWrapper.js';
+import { badRequestResponse } from '../middlewares/errorMiddleware.js';
 import { generateToken } from '../utils/generateToken.js';
-import { validateRegister } from '../middlewares/validateRegister.js'; 
+import { setAuthCookie } from '../utils/cookieUtils.js';
+import { successResponse } from '../utils/successUtils.js';
 
 // 🔹 Récupérer tous les utilisateurs
 export const getUsers = async (req, res) => {
@@ -27,38 +30,36 @@ export const getUser = async (req, res) => {
 };
 
 // 🔹 Créer un utilisateur (avec rôle)
-export const createUser = async (req, res) => {
-    // Validation des données avec Joi (via le fichier `validate.js`)
-    const { error } = validateRegister(req.body);
-    if (error) return res.status(400).json({ message: error.details[0].message });
+export const createUser = ctrlWrapper(async (req, res) => {
+  const { email, password, role } = req.body;
 
-    // Vérification de l'existence de l'utilisateur avec cet email
-    const existingUser = await User.findOne({ where: { email: req.body.email } });
-    if (existingUser) return res.status(400).json({ message: "Cet email est déjà utilisé" });
+  if (!email || !password) {
+    return badRequestResponse(res, "All fields are required");
+  }
 
-    // Hash du mot de passe
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    
-    // Création de l'utilisateur
-    const user = await User.create({ 
-      ...req.body, 
-      password: hashedPassword 
-    });
+  const existingUser = await User.findOne({ where: { email } });
+  if (existingUser) {
+    return badRequestResponse(res, "Email already in use");
+  }
 
-    // Générer un token JWT pour l'utilisateur
-    const token = generateToken(user);
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const user = await User.create({
+    email,
+    password: hashedPassword,
+    role,
+  });
 
-    // On ne renvoie pas le mot de passe dans la réponse
-    const { password, ...userData } = user.toJSON();
+  const token = generateToken(user);
 
-    // Répondre avec les données utilisateur et le token
-    res.status(201).json({
-      message: "Utilisateur créé avec succès",
-      user: userData,
-      token, // Envoi du token
-    });
-  
-};
+  setAuthCookie(res, token);
+
+  successResponse(res, "User created successfully", {
+    id: user.id,
+    email: user.email,
+    role: user.role,
+  });
+});
+
 
 // 🔹 Mettre à jour un utilisateur
 export const updateUser = async (req, res) => {

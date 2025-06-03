@@ -11,7 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:reset": "node src/config/db/resetDatabase.js",
     "db:create": "node src/config/db/createTable.js",
-    "db:seed": "node src/config/db/populateTable.js"
+    "db:seed": "node src/config/db/populateTable.js",
+    "db:refresh": "pnpm run db:reset && pnpm run db:create && pnpm run db:seed"
   },
   "keywords": [],
   "author": "",
