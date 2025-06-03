@@ -10,7 +10,7 @@ export const userRouter = Router();
 userRouter.get('/', ctrlWrapper(UserController.getUsers));
 
 // Route pour récupérer un utilisateur par ID
-userRouter.get('/:id', authMiddleware, ctrlWrapper(UserController.getUser));
+userRouter.get('/:id', ctrlWrapper(UserController.getUser));
 
 // Route pour créer un nouvel utilisateur
 userRouter.post('/register', validateRegister, ctrlWrapper(UserController.createUser));
