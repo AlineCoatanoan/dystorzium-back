@@ -8,8 +8,8 @@ export class User extends Model {
       {
         id: {
           type: DataTypes.INTEGER,
-          primaryKey: true,
           autoIncrement: true,
+          primaryKey: true,
         },
         email: {
           type: DataTypes.STRING(100),

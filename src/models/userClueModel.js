@@ -16,6 +16,7 @@ export class User_Clue extends Model {
             key: 'id',
           },
           onDelete: 'CASCADE',
+          primaryKey: true,  
         },
         clue_id: {
           type: DataTypes.INTEGER,
@@ -24,6 +25,7 @@ export class User_Clue extends Model {
             key: 'id',
           },
           onDelete: 'CASCADE',
+          primaryKey: true, 
         },
         date_requested: {
           type: DataTypes.DATE,
@@ -35,7 +37,6 @@ export class User_Clue extends Model {
         modelName: 'User_Clue',
         tableName: 'user_clues',
         timestamps: false,
-        primaryKey: false,
       }
     );
   }

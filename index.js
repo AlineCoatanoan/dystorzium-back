@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { sequelize } from "./src/config/dbclient.js"; // Importer l'instance de Sequelize configurée
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import { router } from "./src/routes/router.js";
 import { errorMiddleware } from "../../dystorzium/dystorzium-back/src/middlewares/errorMiddleware.js";
 import { notFoundMiddleware } from "../dystorzium-back/src/middlewares/notFoundMiddleware.js";
@@ -20,6 +21,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(cookieParser());
 
 // Routes
 app.get("/", (req, res) => {

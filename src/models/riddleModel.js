@@ -1,5 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
-import { sequelize } from '../config/dbclient.js'; // Importer la connexion Sequelize depuis dbclient.js
+import { sequelize } from '../config/dbclient.js';
 
 export class Riddle extends Model {
   static init(sequelize) {
@@ -19,29 +19,34 @@ export class Riddle extends Model {
           allowNull: false,
         },
         content: {
-          type: DataTypes.TEXT, // Contenu de l'énigme (texte, lien, etc.)
+          type: DataTypes.TEXT,
           allowNull: true,
         },
         solution: {
-          type: DataTypes.STRING, // Acceptation de réponses textuelles
+          type: DataTypes.STRING,
           allowNull: false,
-        },
-        type: {
-          type: DataTypes.ENUM('text', 'audio', 'image', 'interactive'),
-          allowNull: false,
-          defaultValue: 'text', // Par défaut, une énigme textuelle
         },
         order: {
-          type: DataTypes.INTEGER, // Pour organiser les énigmes dans un ordre précis
+          type: DataTypes.INTEGER,
           allowNull: false,
         },
         isMultiStep: {
           type: DataTypes.BOOLEAN,
-          defaultValue: false, // Pour indiquer si l'énigme se fait en plusieurs étapes
+          defaultValue: false,
+        },
+        nextRiddleId: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+          references: {
+            model: 'riddles',
+            key: 'id',
+          },
+          onUpdate: 'CASCADE',
+          onDelete: 'SET NULL',
         },
       },
       {
-        sequelize, // On passe directement l'instance sequelize ici
+        sequelize,
         modelName: 'Riddle',
         tableName: 'riddles',
         timestamps: true,
@@ -50,6 +55,4 @@ export class Riddle extends Model {
   }
 }
 
-// Initialiser le modèle avec sequelize
-Riddle.init(sequelize);  // Il faut appeler `init` après avoir importé `sequelize`
-
+Riddle.init(sequelize);

@@ -1,5 +1,7 @@
 import Joi from "joi";
 
+// Middleware pour valider les données de "login"
+
 export const validateLogin = (req, res, next) => {
   const schema = Joi.object({
     email: Joi.string().email().required().messages({

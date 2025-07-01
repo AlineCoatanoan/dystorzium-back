@@ -1,8 +1,9 @@
 import { Router } from 'express';
 import * as UserController from '../controllers/userController.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
-import { authMiddleware } from '../middlewares/authMiddleware.js';  // Si tu as des middlewares pour la vérification d'auth
+import { validateUserUpdate } from '../middlewares/validateUserUpdate.js';
 import { validateRegister } from '../middlewares/validateRegister.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 export const userRouter = Router();
 
@@ -16,9 +17,9 @@ userRouter.get('/:id', ctrlWrapper(UserController.getUser));
 userRouter.post('/register', validateRegister, ctrlWrapper(UserController.createUser));
 
 // Route pour mettre à jour un utilisateur
-userRouter.put('/:id', authMiddleware, ctrlWrapper(UserController.updateUser));
+userRouter.put('/:id', authenticate, validateUserUpdate, ctrlWrapper(UserController.updateUser));
 
 // Route pour supprimer un utilisateur
-userRouter.delete('/:id', authMiddleware, ctrlWrapper(UserController.deleteUser));
+userRouter.delete('/:id', ctrlWrapper(UserController.deleteUser));
 
 

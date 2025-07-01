@@ -60,7 +60,6 @@ export const createUser = ctrlWrapper(async (req, res) => {
   });
 });
 
-
 // 🔹 Mettre à jour un utilisateur
 export const updateUser = async (req, res) => {
   try {
@@ -80,11 +79,16 @@ export const updateUser = async (req, res) => {
       return res.status(403).json({ message: "Seul un administrateur peut changer le rôle" });
     }
 
+    if (req.body.email && req.body.email !== user.email) {
+      const existingUser = await User.findOne({ where: { email: req.body.email } });
+      if (existingUser) {
+        return res.status(400).json({ message: "Cet e-mail est déjà utilisé" });
+      }
+    }
     // Hash du mot de passe s'il est fourni
     if (req.body.password) {
       req.body.password = await bcrypt.hash(req.body.password, 10);
     }
-
     // Mise à jour de l'utilisateur
     await user.update(req.body);
 

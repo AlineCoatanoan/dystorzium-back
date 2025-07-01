@@ -1,21 +1,15 @@
-// middlewares/authMiddleware.js
+// utils/verifyToken.js
 import jwt from 'jsonwebtoken';
 
-const authMiddleware = (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1]; // Récupère le token dans le header Authorization
-  
-  if (!token) {
-    return res.status(401).json({ message: 'Accès non autorisé, token manquant' });
-  }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ message: 'Token invalide ou expiré' });
+export const verifyToken = (token) => {
+  return new Promise((resolve, reject) => {
+    if (!process.env.JWT_SECRET) {
+      return reject(new Error('Clé secrète JWT non définie'));
     }
-    // Ajouter les informations de l'utilisateur décodé à la requête
-    req.user = decoded;
-    next();
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) return reject(err);
+      console.log("process.env.JWT_SECRET =", process.env.JWT_SECRET);
+      resolve(decoded);
+    });
   });
 };
-
-export default authMiddleware;

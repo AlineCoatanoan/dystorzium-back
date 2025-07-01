@@ -15,6 +15,7 @@ export class User_Riddle extends Model {
             key: 'id',
           },
           onDelete: 'CASCADE',
+          primaryKey: true,  // <-- ici
         },
         riddle_id: {
           type: DataTypes.INTEGER,
@@ -23,6 +24,7 @@ export class User_Riddle extends Model {
             key: 'id',
           },
           onDelete: 'CASCADE',
+          primaryKey: true,  // <-- ici aussi
         },
         state: {
           type: DataTypes.STRING(20),
